@@ -6,11 +6,11 @@ def show(val):
         resultField.delete("0.0", END)
         resultField.insert(INSERT, val)
     else:
-        ops = {'-', '+', '*', '/'}
+        ops = {'-', '+', '*', '/', ' '}
         prev = resultField.get("0.0", 'end-1c')
         resultField.delete("0.0", END)
-        if prev[len(prev) - 1] not in ops and val == ' ( ':
-            prev += ' *'
+        if (prev[len(prev) - 1] not in ops) and val == '( ':
+            prev += ' * '
         prev += val
         resultField.insert(INSERT, prev)
 
@@ -71,7 +71,7 @@ bminus.grid(row=4, column=4)
 badd = Button(window, text="+", width=5, command=lambda : show(" + "))
 badd.grid(row=5, column=4)
 
-bOpenParen = Button(window, text="(", width=5, command=lambda : show(" ( "))
+bOpenParen = Button(window, text="(", width=5, command=lambda : show("( "))
 bOpenParen.grid(row=5, column=2)
 
 bCloseParen = Button(window, text=")", width=5, command=lambda : show(" ) "))

@@ -4,7 +4,6 @@ def calculate(exp):
     exp_arr = exp.strip().split(' ')
     post_exp = infix_to_postfix(exp_arr)
     result = calc_postfix(post_exp)
-    print(result)
     return result
     
 def infix_to_postfix(arr):
