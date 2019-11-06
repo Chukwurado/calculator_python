@@ -1,6 +1,6 @@
 # My Calculator
 
-I made a simple calculate using Python and the popular python GUI Tkinter
+Made a simple calculate using Python and the popular python GUI Tkinter
 
 ![Repo List](images/startscreen.PNG)
 
