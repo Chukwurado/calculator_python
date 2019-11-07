@@ -73,4 +73,4 @@ def calc_postfix(arr):
 # calculate("( 42.3 / 3 ) - 34 ")
 # calculate("1 + 2 * 4.2")
 # # 6 -7 * 7 + 5 -> 677*-5+
-calculate('( 2 + 1 ) ^ 3')
+# calculate('( 2 + 1 ) ^ 3')

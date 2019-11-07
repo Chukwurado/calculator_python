@@ -11,6 +11,8 @@ def show(val):
         resultField.delete("0.0", END)
         if (prev[len(prev) - 1] not in ops) and val == '( ':
             prev += ' * '
+        if (prev[len(prev) - 1] == ')') and val.strip() not in ops:
+            prev += ' * '
         prev += val
         resultField.insert(INSERT, prev)
 
@@ -84,7 +86,7 @@ badd.grid(row=5, column=4)
 bOpenParen = Button(window, text="(", width=5, command=lambda : show("( "))
 bOpenParen.grid(row=5, column=2)
 
-bCloseParen = Button(window, text=")", width=5, command=lambda : show(" ) "))
+bCloseParen = Button(window, text=")", width=5, command=lambda : show(" )"))
 bCloseParen.grid(row=5, column=3)
 
 b0 = Button(window, text="0", width=5, command=lambda : show("0"))
