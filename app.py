@@ -6,7 +6,7 @@ def show(val):
         resultField.delete("0.0", END)
         resultField.insert(INSERT, val)
     else:
-        ops = {'-', '+', '*', '/', ' '}
+        ops = {'-', '+', '*', '/', ' ', '^'}
         prev = resultField.get("0.0", 'end-1c')
         resultField.delete("0.0", END)
         if (prev[len(prev) - 1] not in ops) and val == '( ':
@@ -24,13 +24,23 @@ def calc():
     resultField.delete('0.0', END)
     resultField.insert(INSERT, str(res))
 
+def delete():
+    prev = resultField.get("0.0", 'end-1c')
+    resultField.delete('0.0', END)
+    if prev[len(prev) - 1] == ' ':
+        prev = prev[:len(prev)-2]
+    prev = prev[:len(prev)-1]
+    if len(prev) == 0:
+        prev = '0'
+    resultField.insert(INSERT, prev)
+
 window = Tk()
 
 window.wm_title("Calculator")
 
 resultField = Text(window, height=1, width=15)
 resultField.insert(INSERT, "0")
-resultField.grid(row=1, column=1, columnspan=3)
+resultField.grid(row=1, column=1, columnspan=4)
 
 b9 = Button(window, text="9", width=5, command=lambda : show("9"))
 b9.grid(row=2, column=3)
@@ -77,13 +87,20 @@ bOpenParen.grid(row=5, column=2)
 bCloseParen = Button(window, text=")", width=5, command=lambda : show(" ) "))
 bCloseParen.grid(row=5, column=3)
 
-b0 = Button(window, text="0", width=5, command=lambda : show("9"))
+b0 = Button(window, text="0", width=5, command=lambda : show("0"))
 b0.grid(row=5, column=1)
 
-bClear = Button(window, text="C", width=10, command=lambda : clear())
-bClear.grid(row=6, column=1, columnspan=2)
+bPower = Button(window, text="^", width=5, command=lambda : show(' ^ '))
+bPower.grid(row=6, column=4)
 
-bCalc = Button(window, text="=", width=10, command=lambda : calc())
-bCalc.grid(row=6, column=3, columnspan=2)
+bCalc = Button(window, text="=", width=5, command=lambda : calc())
+bCalc.grid(row=6, column=3)
+
+bClear = Button(window, text="C", width=5, command=lambda : clear())
+bClear.grid(row=6, column=2)
+
+bDel = Button(window, text="DEL", width=5, command=lambda : delete())
+bDel.grid(row=6, column=1)
+
 
 window.mainloop()
