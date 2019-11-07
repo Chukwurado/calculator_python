@@ -8,6 +8,7 @@ def calculate(exp):
     
 def infix_to_postfix(arr):
     operators = {
+            '^': 4,
             '*': 3, 
             '/': 3,
             '+': 2,
@@ -44,7 +45,11 @@ def infix_to_postfix(arr):
 def calc_postfix(arr):
     calc = []
     for o in arr:
-        if o == '*':
+        if o == '^':
+            a = calc.pop()
+            b = calc.pop()
+            calc.append(b**a)
+        elif o == '*':
             a = calc.pop()
             b = calc.pop()
             calc.append(b*a)
@@ -68,3 +73,4 @@ def calc_postfix(arr):
 # calculate("( 42.3 / 3 ) - 34 ")
 # calculate("1 + 2 * 4.2")
 # # 6 -7 * 7 + 5 -> 677*-5+
+calculate('( 2 + 1 ) ^ 3')
